@@ -6,8 +6,8 @@ import Logo from '../public/logo-no-background.svg';
 import TanstackProvider from "@/providers/tanstackprovider";
 
 export const metadata: Metadata = {
-  title: "Construction Project Management Made Easy | Project Core",
-  description: "Project Core is a construction project management application that empowers contractors and handymen to easily stay on top of their projects.",
+  title: "Ignite your productivity | Project Core",
+  description: "Project Core is a construction management application that empowers contractors and handymen to easily stay on top of their projects.",
 };
 
 export default function RootLayout({
@@ -31,7 +31,7 @@ export default function RootLayout({
           </TanstackProvider>
           </main>
         <footer className="bg-gray-900 text-center py-4 text-sm">
-         &copy; {new Date().getFullYear()} Project Core. Developed by <a href="https://jordancox.dev/" target="_blank" className="font-medium hover:underline">JordanCox.dev</a>.
+         &copy; {new Date().getFullYear()} Project Core. All Rights Reserved. Developed by <a href="https://jordancox.dev/" target="_blank" className="font-medium hover:underline">JordanCox.dev</a>.
         </footer>
       </body>
     </html>
