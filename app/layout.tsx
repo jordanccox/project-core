@@ -3,8 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Image from "next/image";
 import Logo from '../public/logo-no-background.svg';
-
-const inter = Inter({ subsets: ["latin"] });
+import TanstackProvider from "@/providers/tanstackprovider";
 
 export const metadata: Metadata = {
   title: "Construction Project Management Made Easy | Project Core",
@@ -27,7 +26,10 @@ export default function RootLayout({
         </header>
         {/* <main className="container mx-auto px-4 py-10"> */}
         <main className="container mx-auto px-4 py-10 flex-grow">
-          {children}</main>
+          <TanstackProvider>
+            {children}
+          </TanstackProvider>
+          </main>
         <footer className="bg-gray-900 text-center py-4 text-sm">
          &copy; {new Date().getFullYear()} Project Core. Developed by <a href="https://jordancox.dev/" target="_blank" className="font-medium hover:underline">JordanCox.dev</a>.
         </footer>
