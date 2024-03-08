@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Image from "next/image";
+import Logo from '../public/logo-no-background.svg';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,15 +18,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-gray-800 text-white min-h-screen font-sans"> {/* Set background and text color */}
+      {/* <body className="bg-gray-800 text-white min-h-screen font-sans">  */}
+      <body className="flex flex-col min-h-screen bg-gray-800 text-white font-sans">
+
+      {/* Set background and text color */}
         <header className="bg-gray-900 py-4 px-6 flex justify-between items-center">
-          {/* <h1 className="text-xl font-bold text-white">My App Login</h1> */}
-          {/* Add logo or navigation links here */}
-          <img src="logo-no-background.svg" className="h-20" />
+          <a href="/"><Image src={Logo} className="h-16 w-72 sm:w-[350px] md:w-[400px] sm:h-20 md:h-24" alt="Logo" /></a>
         </header>
-        <main className="container mx-auto px-4 py-10">{children}</main>
+        {/* <main className="container mx-auto px-4 py-10"> */}
+        <main className="container mx-auto px-4 py-10 flex-grow">
+          {children}</main>
         <footer className="bg-gray-900 text-center py-4 text-sm">
-          Copyright &copy; {new Date().getFullYear()} My App
+         &copy; {new Date().getFullYear()} Project Core. Developed by <a href="https://jordancox.dev/" target="_blank" className="font-medium hover:underline">JordanCox.dev</a>.
         </footer>
       </body>
     </html>
