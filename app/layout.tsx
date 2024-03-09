@@ -17,14 +17,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* <body className="bg-gray-800 text-white min-h-screen font-sans">  */}
       <body className="flex flex-col min-h-screen bg-gray-800 text-white font-sans">
 
       {/* Set background and text color */}
         <header className="bg-gray-900 py-4 px-6 flex justify-between items-center">
           <a href="/"><Image src={Logo} className="h-16 w-72 sm:w-[350px] md:w-[400px] sm:h-20 md:h-24" alt="Logo" /></a>
         </header>
-        {/* <main className="container mx-auto px-4 py-10"> */}
         <main className="container mx-auto px-4 py-10 flex-grow">
           <TanstackProvider>
             {children}

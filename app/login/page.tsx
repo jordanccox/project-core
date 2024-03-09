@@ -1,12 +1,11 @@
 "use client";
 
-import { FormEvent, useState } from "react";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { checkLoggedIn } from "../api/login";
+import { checkLoggedIn } from "../lib/user";
 
 const loginSchema = z.object({
   email: z.string().email({ message: "Invalid email format" }),
@@ -16,30 +15,12 @@ const loginSchema = z.object({
 });
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
   const login = async (data: any) => {
     console.log(data);
     const response = await axios.post(`http://localhost:8000/user/login`, data);
     console.log(response);
     return response.data;
   };
-
-  // const checkIfLoggedIn = async () => {
-  //   // const response = await fetch(`http://localhost:8000/profile`, {
-  //   //   method: "GET",
-  //   //   headers: {
-  //   //     "Content-Type": "application/json",
-  //   //     "Set-Cookie": "s%3AofAHDatwzIzf_JxkFz4i8JgZ1MtX-rnS.iBgrt9DB6GWIl%2Bw0beMIfROfJtJ8yZHekO%2BZd3FT%2Bfo"
-  //   //   },
-  //   //   // credentials: "include"
-  //   // });
-  //   // const data = await response.json();
-  
-  //   // console.log(data);
-
-  // };
 
   const mutation = useMutation({
     mutationFn: login
