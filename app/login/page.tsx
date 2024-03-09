@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import { checkLoggedIn } from "../api/login";
 
 const loginSchema = z.object({
   email: z.string().email({ message: "Invalid email format" }),
@@ -24,6 +25,21 @@ export default function Login() {
     console.log(response);
     return response.data;
   };
+
+  // const checkIfLoggedIn = async () => {
+  //   // const response = await fetch(`http://localhost:8000/profile`, {
+  //   //   method: "GET",
+  //   //   headers: {
+  //   //     "Content-Type": "application/json",
+  //   //     "Set-Cookie": "s%3AofAHDatwzIzf_JxkFz4i8JgZ1MtX-rnS.iBgrt9DB6GWIl%2Bw0beMIfROfJtJ8yZHekO%2BZd3FT%2Bfo"
+  //   //   },
+  //   //   // credentials: "include"
+  //   // });
+  //   // const data = await response.json();
+  
+  //   // console.log(data);
+
+  // };
 
   const mutation = useMutation({
     mutationFn: login
@@ -45,6 +61,7 @@ export default function Login() {
 
   return (
     <>
+    <button onClick={checkLoggedIn}>Test If Logged In</button>
       <h1 className="text-center text-4xl font-medium pb-12">Login</h1>
       <div className="flex items-center justify-center min-h-full pb-12">
         <div className="bg-white shadow-md rounded px-8 py-6 w-full max-w-md text-black">
