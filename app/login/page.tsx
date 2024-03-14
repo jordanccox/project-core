@@ -1,41 +1,34 @@
-"use client";
+"use client"
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
 import { checkLoggedIn } from "../lib/user";
-
-const loginSchema = z.object({
-  email: z.string().email({ message: "Invalid email format" }),
-  password: z
-    .string()
-    .min(8, { message: "Password should be at least 8 characters long" }),
-});
+import { login } from "../lib/user";
+import { loginSchema } from "@/schemas/user";
+import { useState } from "react";
 
 export default function Login() {
-  const login = async (data: any) => {
-    console.log(data);
-    const response = await axios.post(`http://localhost:8000/user/login`, data);
-    console.log(response);
-    return response.data;
-  };
 
-  const mutation = useMutation({
+  const { data, isPending, mutate } = useMutation({
     mutationFn: login
   });
 
   const onSubmit = async (data: any) => {
-    // Your login logic here, e.g., making a request to your API route
-    mutation.mutate(data);
-
+    // Submit data to login function
+    try {
+      mutate(data);
+      reset();
+    } catch(error) {
+      console.log("Error occurred");
+    }
   };
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm({
     resolver: zodResolver(loginSchema),
   });
